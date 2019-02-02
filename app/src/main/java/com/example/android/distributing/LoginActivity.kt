@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.Window
 import android.util.Log
 import android.widget.*
-import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -20,8 +19,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        edt_telnumber = findViewById(R.id.telnumber) as EditText
-        edt_password = findViewById(R.id.password) as EditText
+        edt_telnumber = findViewById(R.id.firstname) as EditText
+        edt_password = findViewById(R.id.secondname) as EditText
         btn_login = findViewById(R.id.btn_login) as Button
         txt_signup = findViewById(R.id.signup) as TextView
 
@@ -68,6 +67,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun signup() {
-        
+        startActivity(Intent(this, SignUpActivity::class.java))
     }
 }
