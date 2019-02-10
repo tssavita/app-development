@@ -4,8 +4,15 @@
     <string name="mipmap">mipmap-mdpi</string>
     <string name="passwordhint">Password</string>
     <string name="telcountrycode">+91</string>
+    <string name="nationalid">Aadhar ID</string>
     <string name="login">Login</string>
     <string name="signup">Sign Up</string>
+    <string name="firstname">First Name</string>
+    <string name="secondname">Second Name</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="birthdate">Date of Birth</string>
+    <string name="location">Location</string>
     <string name="title_activity_login">Sign in</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -17,4 +24,24 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="title_activity_usage_material">UsageMaterial</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="title_activity_navigation_menu">NavigationMenu</string>
+
+    <!-- Strings related to Feedback View -->
+    <string name="longoption">This option is actually a full sentence long.</string>
+    <string name="option2">This option is as long as a line.</string>
+    <string name="option3">Generic short option</string>
+    <string name="option4">Short option</string>
+    <string name="option5">Tiny</string>
 </resources>

@@ -5,6 +5,64 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#F3F3F3"
         tools:context=".Dashboard">
 
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/dashboard_pic"
+            android:id="@+id/imageView3" android:layout_marginTop="100dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+    <ImageView
+            android:layout_width="409dp"
+            android:layout_height="209dp" android:src="@drawable/dashboard_details"
+            android:id="@+id/dashboard_details"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" android:layout_marginTop="56dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+
+    <TextView
+            android:text="Hi "
+            android:id="@+id/welcomeText"
+            android:layout_width="wrap_content"
+            android:textSize="24dp"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="@font/tektonpro_bold"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:textAlignment="center" app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintVertical_bias="0.459"/>
+    <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@android:drawable/ic_menu_edit" app:rippleColor="@color/white"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.9" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.957"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/tektonpro_regular"
+            android:textSize="18dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_height="18dp"
+            android:id="@+id/age_location" android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/welcomeText" app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintVertical_bias="0.095"/>
 </android.support.constraint.ConstraintLayout>

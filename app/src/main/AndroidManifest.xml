@@ -23,11 +23,20 @@
         </activity>
         <activity android:name=".SignUpActivity">
         </activity>
-        <activity android:name=".Dashboard">
-        </activity>
-        <activity android:name=".Main2Activity">
-        </activity>
         <activity android:name=".UsageMaterial">
+        </activity>
+        <activity
+                android:name=".NavigationMenu"
+                android:label="@string/title_activity_navigation_menu"
+                android:theme="@style/AppTheme">
+        </activity>
+        <activity android:name=".Feedback">
+        </activity>
+        <activity android:name=".question1">
+        </activity>
+        <activity android:name=".question2">
+        </activity>
+        <activity android:name=".profile">
         </activity>
     </application>
 
