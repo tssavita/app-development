@@ -2,6 +2,7 @@ package com.example.android.distributing
 
 import android.app.DatePickerDialog
 import android.content.Intent
+import com.example.android.distributing.Utils
 import android.graphics.drawable.ColorDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +15,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_login.*
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.text.StringBuilder
@@ -21,6 +23,7 @@ import kotlin.text.StringBuilder
 class SignUpActivity : AppCompatActivity() {
 
     var dbHandler: DatabaseHandler? = null
+    var user: User? = null
 
     var toolbar: Toolbar? = null
 
@@ -110,9 +113,9 @@ class SignUpActivity : AppCompatActivity() {
     fun signup() {
         if (!validateInput())
             signUpfailed()
-        val user: User = User(first_name.toString(), second_name.toString(), birth_date.toString(), tel_number.toString(), nationalid.toString(), password.toString(), location.toString())
+        user = User(first_name!!.text.toString(), second_name!!.text.toString(), birth_date!!.text.toString(), tel_number!!.text.toString(), nationalid!!.text.toString(), password!!.text.toString(), location!!.text.toString())
         val dbHandler: DatabaseHandler = DatabaseHandler(this)
-        val _insert_status = dbHandler.insertUser(user)
+        val _insert_status = dbHandler.insertUser(user!!)
         if (_insert_status) {
             Toast.makeText(baseContext, "Saved successfully", Toast.LENGTH_LONG)
             Log.i("Insert successful", "Insert successful")
@@ -124,21 +127,6 @@ class SignUpActivity : AppCompatActivity() {
         Toast.makeText(baseContext, "Please fill up all fields", Toast.LENGTH_LONG).show()
     }
 
-    fun ageCalculator(): Int {
-        val yearNow = Calendar.getInstance().get(Calendar.YEAR)
-        val dateNow = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
-
-        val birthYear = calendardob.get(Calendar.YEAR)
-        val birthDay = calendardob.get(Calendar.DAY_OF_YEAR)
-
-        var age: Int = yearNow - birthYear
-        if (birthDay > dateNow)
-            age -= 1
-
-        Log.i("Age", age.toString())
-        return age
-    }
-
     fun dashboard() {
         val dashboardIntent = Intent(this, NavigationMenu::class.java)
         Log.i("SignUpActivity", "first name here: " + first_name!!.text)
@@ -147,7 +135,8 @@ class SignUpActivity : AppCompatActivity() {
         val birthDate = birth_date!!.text.toString()
         dashboardIntent.putExtra("firstName", firstName)
         dashboardIntent.putExtra("secondName", secondName)
-        dashboardIntent.putExtra("dob", ageCalculator().toString())
+        dashboardIntent.putExtra("dob", Utils.ageCalculator(calendardob).toString())
+        dashboardIntent.putExtra("user", user as User)
         startActivity(dashboardIntent)
     }
 

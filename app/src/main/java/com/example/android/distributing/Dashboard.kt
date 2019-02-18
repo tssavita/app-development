@@ -32,6 +32,7 @@ class Dashboard : AppCompatActivity() {
         username!!.setOnClickListener {
             displayUsageMaterial()
         }
+
     }
 
     fun displayMenu() {

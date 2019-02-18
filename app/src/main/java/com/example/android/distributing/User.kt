@@ -1,5 +1,7 @@
 package com.example.android.distributing
 
+import android.support.constraint.Placeholder
+import java.io.Serializable
 import java.util.*
 
 class User(val fName: String,
@@ -8,15 +10,15 @@ class User(val fName: String,
            val tNumber: String,
            val ntnlId: String,
            val pword: String,
-           val place: String) {
-    val id: Int = 0
-    val firstName: String
-    val secondName: String
-    val birthDate: String
-    val telNumber: String
-    val nationalId: String
-    val password: String
-    val location: String
+           val stayPlace: String): Serializable {
+    var id: Int = 0
+    var firstName: String
+    var secondName: String
+    var birthDate: String
+    var telNumber: String
+    var nationalId: String
+    var password: String
+    var location: String
 
     init {
         firstName = fName
@@ -25,6 +27,6 @@ class User(val fName: String,
         telNumber = tNumber
         nationalId = ntnlId
         password = pword
-        location = place
+        location = stayPlace
     }
 }

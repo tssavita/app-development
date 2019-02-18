@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.R.*
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.widget.DrawerLayout
 import android.text.Layout
 import android.view.Menu
@@ -17,6 +18,7 @@ import android.view.MenuItem
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_navigation_menu.*
 import kotlinx.android.synthetic.main.app_bar_navigation_menu.*
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
 
@@ -29,6 +31,8 @@ class NavigationMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     var drawer_layout: DrawerLayout? = null
     var firstName: Any? = null
     var secondName: Any? = null
+    var user: User? = null
+    var editPencil: FloatingActionButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,21 +41,13 @@ class NavigationMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         agelocation = findViewById(R.id.age_location)
         toolbar = findViewById(R.id.toolbar)
         drawer_layout = findViewById(R.id.drawer_layout)
+        editPencil = findViewById(R.id.fab)
         setSupportActionBar(toolbar)
         //getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
-        var userInformation = intent.extras
-        if (userInformation != null) {
-            firstName = userInformation["firstName"].toString()
-            secondName = userInformation["secondName"].toString()
-            dob = userInformation["dob"].toString()
-        }
-        else  {
-            firstName = ""
-            secondName = ""
-            dob = "0"
-        }
 
+        user = intent.extras.get("user") as User
         displayProfile()
+
         /*fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
@@ -64,11 +60,11 @@ class NavigationMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+        nav_view.itemIconTintList = null
 
-        welcometext!!.setOnClickListener {
-            displayUsageMaterial()
+        editPencil!!.setOnClickListener {
+            editProfile()
         }
-
     }
 
     override fun onBackPressed() {
@@ -119,17 +115,35 @@ class NavigationMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     fun displayProfile() {
-        Log.i("welcometext", welcometext.toString())
-        Log.i("firstname", firstName.toString())
-        Log.i("secondname", secondName.toString())
-        val welcomeText: String = welcometext!!.text.toString() + firstName.toString() + secondName.toString()
+        Log.i("welcometext", welcometext!!.text.toString())
+        Log.i("firstname", user!!.firstName)
+        Log.i("secondname", user!!.secondName)
+        val welcomeText: String = welcometext!!.text.toString() + user!!.firstName + " " + user!!.secondName
         welcometext!!.setText(welcomeText)
+        var birthDate = stringToCalendar(user!!.birthDate)
+        var age = Utils.ageCalculator(birthDate)
         Log.i("DashboardActivity", "Printing firstname received in dashboard: " + welcomeText)
-        agelocation!!.setText(dob.toString() + " | location")
+        agelocation!!.setText(age.toString() + " | " + user!!.stayPlace)
+        Log.i("Location", user!!.location)
+    }
+
+    fun editProfile() {
+        Log.i("editProfile", "Editing Profile aCtivity")
+        var editProfileIntent = Intent(this, profile::class.java)
+        editProfileIntent.putExtra("user", user as User)
+        startActivity(editProfileIntent)
     }
 
     fun displayUsageMaterial() {
         var usageMaterialIntent = Intent(this, UsageMaterial::class.java)
+        usageMaterialIntent.putExtra("user", user as User)
         startActivity(usageMaterialIntent)
+    }
+
+    fun stringToCalendar(birthDate: String): Calendar {
+        var cal = Calendar.getInstance()
+        var sdf = SimpleDateFormat("dd/MM/yyyy", Locale.US)
+        cal.setTime(sdf.parse(birthDate))
+        return cal
     }
 }
